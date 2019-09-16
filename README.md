@@ -1,4 +1,4 @@
-TypeScript "react-day-picker" Calendar Demo
+TypeScript "react-day-picker" Input Demo
 ===========================================
 
 ```

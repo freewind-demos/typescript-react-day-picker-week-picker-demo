@@ -1,5 +1,5 @@
-TypeScript React Hello World Demo
-=================================
+TypeScript "react-day-picker" Calendar Demo
+===========================================
 
 ```
 npm install

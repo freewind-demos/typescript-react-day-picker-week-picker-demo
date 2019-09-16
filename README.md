@@ -1,5 +1,5 @@
-TypeScript "react-day-picker" Input Demo
-===========================================
+TypeScript "react-day-picker" Week Picker Demo
+=====================================================
 
 ```
 npm install

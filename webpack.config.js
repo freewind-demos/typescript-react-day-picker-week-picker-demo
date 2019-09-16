@@ -17,6 +17,9 @@ module.exports = {
       test: /\.css$/,
       loader: ['style-loader', 'css-loader']
     }, {
+      test: /\.pcss$/,
+      loader: ['style-loader', 'postcss-loader']
+    }, {
       test: /\.tsx?$/,
       loader: 'ts-loader',
       exclude: /node_modules/

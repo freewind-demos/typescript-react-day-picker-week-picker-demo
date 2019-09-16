@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Hello from './hello'
+import WeekPicker from './WeekPicker'
 
 ReactDOM.render(
-  <Hello/>,
+  <WeekPicker/>,
   document.body
 )

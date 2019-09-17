@@ -12,6 +12,11 @@ const {
   parseDate,
 } = require('react-day-picker/moment');
 
+type DateRange = {
+  from: Date,
+  to: Date
+}
+
 function getWeekDays(weekStart: Date): Date[] {
   const days = [];
   for (let i = 0; i <= 6; i += 1) {
@@ -22,11 +27,6 @@ function getWeekDays(weekStart: Date): Date[] {
   return days;
 }
 
-type DateRange = {
-  from: Date,
-  to: Date
-}
-
 function getWeekRange(date: Date): DateRange {
   return {
     from: moment(date).startOf('week').toDate(),
@@ -34,13 +34,18 @@ function getWeekRange(date: Date): DateRange {
   }
 }
 
-export default function WeekPicker() {
-  const [date, setDate] = useState(new Date(2000, 0, 1));
+export type WeekPickerProps = {
+  selectedDate: Date,
+  onSelectDate: (date: Date) => void,
+}
+
+export default function WeekPicker({selectedDate, onSelectDate}: WeekPickerProps) {
+
   const [selectedDays, setSelectedDays] = useState<Date[]>([])
   const [hoverRange, setHoverRange] = useState<DateRange>()
 
   function onDayChange(day: Date, DayModifiers: DayModifiers, dayPickerInput: DayPickerInput) {
-    setDate(getWeekRange(day).from);
+    onSelectDate(getWeekRange(day).from);
   }
 
   function onDayMouseEnter(day: Date, modifiers: DayModifiers, e: React.MouseEvent<HTMLDivElement>) {
@@ -67,23 +72,21 @@ export default function WeekPicker() {
     } : undefined,
   }
 
-  return <div>
-    <h1>Select Day: {date.toString()}</h1>
-    <DayPickerInput
-      formatDate={formatDate}
-      parseDate={parseDate}
-      format="DD/MM/YYYY"
-      dayPickerProps={{
-        className: 'WeekPicker',
-        selectedDays,
-        modifiers,
-        onDayMouseEnter,
-        onDayMouseLeave,
-        onWeekClick,
-        onDayClick,
-        showWeekNumbers: true,
-        showOutsideDays: true,
-      }}
-      onDayChange={onDayChange} value={date}/>
-  </div>
+  return <DayPickerInput
+    formatDate={formatDate}
+    parseDate={parseDate}
+    format="DD/MM/YYYY"
+    dayPickerProps={{
+      className: 'WeekPicker',
+      selectedDays,
+      modifiers,
+      onDayMouseEnter,
+      onDayMouseLeave,
+      onWeekClick,
+      onDayClick,
+      showWeekNumbers: true,
+      showOutsideDays: true,
+    }}
+    onDayChange={onDayChange} value={selectedDate}/>
+
 };
